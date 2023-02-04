@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SportAssist</string>
+    <string name="home_route">home</string>
+</resources>
