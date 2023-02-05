@@ -3,6 +3,8 @@ package com.tana.sportassist.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tana.sportassist.data.remote.SportAssistApi
+import com.tana.sportassist.data.repository.Repository
+import com.tana.sportassist.domain.repository.RepositoryImpl
 import com.tana.sportassist.utils.SportAssistConstants
 import dagger.Module
 import dagger.Provides
@@ -24,5 +26,10 @@ object SportAssistModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(SportAssistApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRepository(api: SportAssistApi): Repository =
+        RepositoryImpl(api = api)
 
 }

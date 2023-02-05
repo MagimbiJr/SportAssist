@@ -8,11 +8,11 @@ import retrofit2.http.Query
 
 interface SportAssistApi {
 
-    @GET("/standings?season&league")
+    @GET("/standings?season&league_id")
     @Headers("X-RapidAPI-Key: ${SportAssistConstants.API_KEY}")
     suspend fun getStandings(
         @Query("season") season: Int,
-        @Query("league") league: Int
+        @Query("league_id") leagueId: Int
     ): TableDto
 
 }
