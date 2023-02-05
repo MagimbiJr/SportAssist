@@ -1,7 +1,9 @@
 package com.tana.sportassist.data.remote
 
 import com.tana.sportassist.data.dto.TableDto
+import com.tana.sportassist.utils.Resource
 import com.tana.sportassist.utils.SportAssistConstants
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
