@@ -1,8 +1,10 @@
 package com.tana.sportassist.data.repository
 
+import com.tana.sportassist.data.dto.ResponseDto
+import com.tana.sportassist.data.dto.StandingDto
 import com.tana.sportassist.data.dto.TableDto
-import com.tana.sportassist.utils.Resource
-import kotlinx.coroutines.flow.Flow
+import com.tana.sportassist.domain.modal.Response
+
 
 /**
  * A data layer that defines business logic for the entire application

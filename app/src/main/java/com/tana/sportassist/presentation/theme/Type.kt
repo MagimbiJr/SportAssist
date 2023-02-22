@@ -16,12 +16,19 @@ private val ubuntuRegular = FontFamily(Font(R.font.ubuntu_regular))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    bodySmall = TextStyle(
+        fontFamily = ubuntuLight,
+        fontWeight = FontWeight.W600,
+        fontSize = 14.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.1.sp
+    ),
     bodyLarge = TextStyle(
         fontFamily = ubuntuLight,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontWeight = FontWeight.W600,
+        fontSize = 14.sp,
         lineHeight = 24.sp,
-        //letterSpacing = 0.5.sp
+        letterSpacing = 0.1.sp
     ),
     labelLarge = TextStyle(
         fontFamily = ubuntuMedium,

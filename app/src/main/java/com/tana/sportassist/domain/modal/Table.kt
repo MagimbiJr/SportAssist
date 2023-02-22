@@ -1,7 +1,8 @@
 package com.tana.sportassist.domain.modal
 
-import com.tana.sportassist.data.dto.Response
+import com.tana.sportassist.data.dto.ResponseDto
 
 data class Table(
-    val response: List<Response>
+    val errors: List<String>,
+    val response: List<ResponseDto>
 )
