@@ -6,7 +6,7 @@ import com.tana.sportassist.domain.modal.Table
 
 data class TableDto(
     @SerializedName("errors")
-    val errors: List<Any>,
+    val errors: List<String>,
     @SerializedName("get")
     val `get`: String,
     @SerializedName("paging")
@@ -14,10 +14,13 @@ data class TableDto(
     @SerializedName("parameters")
     val parameters: Parameters,
     @SerializedName("response")
-    val response: List<Response>,
+    val response: List<ResponseDto>,
     @SerializedName("results")
     val results: Int
 )
 
 fun TableDto.toTable(): Table =
-    Table(response = response)
+    Table(
+        errors = errors,
+        response = response
+    )

@@ -2,8 +2,9 @@ package com.tana.sportassist.data.dto
 
 
 import com.google.gson.annotations.SerializedName
+import com.tana.sportassist.domain.modal.Standing
 
-data class Standing(
+data class StandingDto(
     @SerializedName("all")
     val all: All,
     @SerializedName("away")
@@ -29,3 +30,14 @@ data class Standing(
     @SerializedName("update")
     val update: String
 )
+
+fun StandingDto.toStanding() =
+    Standing(
+        all = all,
+        description = description,
+        goalsDiff = goalsDiff,
+        points = points,
+        rank = rank,
+        team = team,
+        update = update
+    )

@@ -30,6 +30,9 @@ android {
         }
     }
 
+//    buildTypes.each {
+//        it.buildConfigField 'String', 'SPORT_ASSIST_API_KEY', SPORT_ASSIST_API_KEY
+//    }
     buildTypes.each {
         it.buildConfigField 'String', 'SPORT_ASSIST_API_KEY', SPORT_ASSIST_API_KEY
     }

@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.tana.sportassist.R
+import com.tana.sportassist.presentation.standings.StandingsScreen
 
 @Composable
 fun SportAssistNavHost(
@@ -14,7 +15,7 @@ fun SportAssistNavHost(
 ) {
     NavHost(navController = navHostController, startDestination = stringResource(id = R.string.home_route)) {
         composable(route = "home") {
-
+            StandingsScreen()
         }
     }
 }
