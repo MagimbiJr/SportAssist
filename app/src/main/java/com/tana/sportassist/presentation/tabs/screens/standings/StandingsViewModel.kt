@@ -1,4 +1,4 @@
-package com.tana.sportassist.presentation.standings
+package com.tana.sportassist.presentation.tabs.screens.standings
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

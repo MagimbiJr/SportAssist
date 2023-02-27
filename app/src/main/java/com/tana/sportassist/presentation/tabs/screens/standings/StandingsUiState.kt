@@ -1,4 +1,4 @@
-package com.tana.sportassist.presentation.standings
+package com.tana.sportassist.presentation.tabs.screens.standings
 
 import com.tana.sportassist.domain.modal.Standing
 
