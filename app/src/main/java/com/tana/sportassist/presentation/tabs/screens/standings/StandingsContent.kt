@@ -1,10 +1,8 @@
-package com.tana.sportassist.presentation.standings
+package com.tana.sportassist.presentation.tabs.screens.standings
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,7 +22,9 @@ fun StandingsContent(
     modifier: Modifier,
 ) {
     if (uiState.errorMessage.isBlank()) {
-        Standings(uiState = uiState, modifier = modifier)
+        Column {
+            Standings(uiState = uiState, modifier = modifier)
+        }
     } else {
         ErrorBody(modifier = modifier, message = uiState.errorMessage)
     }
@@ -43,8 +43,6 @@ fun Standings(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
-            Divider()
-            Spacer(modifier = modifier.height(12.dp))
             StandingItemHeader(modifier = modifier)
             Spacer(modifier = modifier.height(12.dp))
             Divider()

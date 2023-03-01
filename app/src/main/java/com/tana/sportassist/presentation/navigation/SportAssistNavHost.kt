@@ -9,14 +9,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.tana.sportassist.R
+import com.tana.sportassist.presentation.MatchesScreen
 import com.tana.sportassist.presentation.components.SportAssistBottomNav
-import com.tana.sportassist.presentation.standings.StandingsScreen
+import kotlinx.coroutines.CoroutineScope
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
 @Composable
 fun SportAssistNavHost(
     navHostController: NavHostController,
+    coroutineScope: CoroutineScope,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -35,7 +38,7 @@ fun SportAssistNavHost(
 
             }
             composable(route = BottomNavScreens.Matches.route) {
-                StandingsScreen()
+                MatchesScreen(coroutineScope = coroutineScope)
             }
             composable(route = BottomNavScreens.Settings.route) {
 
