@@ -38,20 +38,17 @@ class StandingsViewModel @Inject constructor(
                             standings = standings,
                             loading = false
                         )
-                        Log.d(TAG, "initBlock: standings $standings")
                     }
                     is Resource.Failure -> {
                         _uiState.value = _uiState.value.copy(
                             errorMessage = response.message ?: "",
                             loading = false
                         )
-                        Log.d(TAG, "initBlock: message ${response.message}")
                     }
                     is Resource.Loading -> {
                         _uiState.value = _uiState.value.copy(
                             loading = true
                         )
-                        Log.d(TAG, "initBlock: loading ${_uiState.value.loading}")
                     }
                 }
             }
