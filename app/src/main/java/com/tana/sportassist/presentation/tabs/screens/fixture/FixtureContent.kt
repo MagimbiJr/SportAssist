@@ -43,6 +43,7 @@ import coil.request.ImageRequest
 import com.tana.sportassist.R
 import com.tana.sportassist.domain.modal.Fixture
 import com.tana.sportassist.presentation.components.ErrorBody
+import com.tana.sportassist.utils.SportAssistConstants
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.LocalDate
@@ -54,6 +55,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun FixtureContent(
     uiState: FixtureUiState,
+    onMatchClick: (Fixture) -> Unit,
     modifier: Modifier
 ) {
     val state = rememberLazyListState()
@@ -68,13 +70,7 @@ fun FixtureContent(
             val context = LocalContext.current
             Fixture(
                 uiState = uiState,
-                onMatchClick = {
-                    Toast.makeText(
-                        context,
-                        "You clicked me boi",
-                        Toast.LENGTH_LONG
-                    ).show()
-                },
+                onMatchClick = onMatchClick,
                 modifier = modifier,
                 state = state
             )
@@ -120,7 +116,7 @@ fun FixtureContent(
 @Composable
 fun Fixture(
     uiState: FixtureUiState,
-    onMatchClick: () -> Unit,
+    onMatchClick: (Fixture) -> Unit,
     modifier: Modifier,
     state: LazyListState
 ) {
@@ -145,9 +141,6 @@ fun Fixture(
                 FixtureItem(fixture = fixture, onMatchClick = onMatchClick, modifier = modifier)
             }
         }
-        item {
-
-        }
     }
 }
 
@@ -156,24 +149,16 @@ fun Fixture(
 @Composable
 fun FixtureItem(
     fixture: Fixture,
-    onMatchClick: () -> Unit,
+    onMatchClick: (Fixture) -> Unit,
     modifier: Modifier
 ) {
     val cardColors = CardDefaults.cardColors(
         contentColor = MaterialTheme.colorScheme.onBackground
     )
-//    val dataDate = LocalDateTime.ofInstant(
-//        Instant.ofEpochSecond(fixture.fixture.timestamp),
-//        ZoneId.systemDefault()
-//    )
-//    val day = dataDate.dayOfMonth
-//    val month = dataDate.month
-//
-//    val date = "${dataDate.dayOfMonth} ${dataDate.month}"
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onMatchClick() },
+            .clickable { onMatchClick(fixture) },
         colors = cardColors
     ) {
         Row(
@@ -229,7 +214,6 @@ fun FixtureItem(
             Text(
                 text = fixture.fixture.date.dayOfWeek.name.take(3),
                 style = MaterialTheme.typography.labelSmall,
-                //fontWeight = FontWeight.ExtraBold
             )
         }
     }

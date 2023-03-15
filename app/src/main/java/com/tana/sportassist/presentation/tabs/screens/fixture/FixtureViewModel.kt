@@ -9,10 +9,14 @@ import com.tana.sportassist.data.dto.fixture.toFixture
 import com.tana.sportassist.domain.modal.Fixture
 import com.tana.sportassist.domain.use_cases.GetFixtureUseCase
 import com.tana.sportassist.utils.Resource
+import com.tana.sportassist.utils.SportAssistConstants
+import com.tana.sportassist.utils.SportAssistEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -34,12 +38,14 @@ class FixtureViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(FixtureUiState())
     val uiState = _uiState.asStateFlow()
+    private val _appEvents = Channel<SportAssistEvents>()
+    val appEvent = _appEvents.receiveAsFlow()
 
 
     init {
         viewModelScope.launch {
-            fixtureUseCase(season = 2022, leagueId = 39).collectLatest { response->
-                when(response) {
+            fixtureUseCase(season = 2022, leagueId = 39).collectLatest { response ->
+                when (response) {
                     is Resource.Success -> {
                         Log.d("TAG", "sayona: ${uiState.value.loading}")
                         val fixture = response.data?.response?.map { it.toFixture() }?.filter {
@@ -53,17 +59,29 @@ class FixtureViewModel @Inject constructor(
                             loading = false
                         )
                     }
+
                     is Resource.Failure -> {
                         _uiState.value = _uiState.value.copy(
                             errorMessage = response.message ?: "",
                             loading = false
                         )
                     }
+
                     is Resource.Loading -> {
                         _uiState.value = _uiState.value.copy(loading = true)
                     }
                 }
             }
+        }
+    }
+
+    fun onMatchClicked(fixture: Fixture) {
+        viewModelScope.launch {
+            _appEvents.send(
+                SportAssistEvents.Navigate(
+                    route = "${SportAssistConstants.FIXTURE_ROUTE}/${fixture.fixture.fixtureId}"
+                )
+            )
         }
     }
 
