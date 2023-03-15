@@ -1,9 +1,7 @@
 package com.tana.sportassist.data.repository
 
-import com.tana.sportassist.data.dto.ResponseDto
-import com.tana.sportassist.data.dto.StandingDto
 import com.tana.sportassist.data.dto.TableDto
-import com.tana.sportassist.domain.modal.Response
+import com.tana.sportassist.data.dto.fixture.FixtureResultDto
 
 
 /**
@@ -20,5 +18,16 @@ interface Repository {
      * [leagueId] An id of the league that you want to see it's standings
      */
     suspend fun getStandings(season: Int, leagueId: Int): TableDto
+
+
+    /**
+     * A function to get fixture data from api
+     * [Param]
+     * [season] A season that you want to get fixture from
+     * [leagueId] An id of the league that you want to get it's fixture
+     */
+
+    suspend fun getFixture(season: Int, leagueId: Int): FixtureResultDto
+
 
 }

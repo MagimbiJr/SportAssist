@@ -1,9 +1,13 @@
 package com.tana.sportassist.presentation.tabs
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.tana.sportassist.presentation.tabs.screens.fixture.FixtureScreen
 import com.tana.sportassist.presentation.tabs.screens.standings.StandingsScreen
+import com.tana.sportassist.utils.SportAssistEvents
 
 sealed class TabsScreens(val title: String, val screen: @Composable () -> Unit) {
     class LiveScore : TabsScreens(
@@ -20,10 +24,15 @@ sealed class TabsScreens(val title: String, val screen: @Composable () -> Unit) 
         }
     )
 
-    class Matches : TabsScreens(
+    @RequiresApi(Build.VERSION_CODES.O)
+    class Matches(
+        navigateToFixture: (SportAssistEvents.Navigate) -> Unit
+    ) : TabsScreens(
         title = "Matches",
         screen = {
-            Text(text = "Matches",)
+            FixtureScreen(
+                navigateToFixture = navigateToFixture
+            )
         }
     )
 }

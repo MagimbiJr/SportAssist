@@ -33,6 +33,11 @@ val Typography = Typography(
     labelLarge = TextStyle(
         fontFamily = ubuntuMedium,
         fontSize = 16.sp
+    ),
+    labelSmall = TextStyle(
+        fontFamily = ubuntuRegular,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 12.sp,
     )
 
     /* Other default text styles to override
